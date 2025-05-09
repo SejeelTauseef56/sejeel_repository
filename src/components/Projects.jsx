@@ -30,6 +30,23 @@ const Projects = () => {
       ? projects
       : projects.filter((project) => project.tags.includes(activeFilter));
 
+  // Function to check URL and open project if needed
+  const checkUrlForProject = () => {
+    const path = window.location.pathname;
+    if (path.includes("/project-")) {
+      const projectName = decodeURIComponent(
+        path.split("/project-")[1]
+      );
+      const projectToOpen = projects.find(
+        (p) => p.name === projectName
+      );
+      if (projectToOpen) {
+        setSelectedProject(projectToOpen);
+        setCurrentImageIndex(0);
+      }
+    }
+  };
+
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -43,19 +60,6 @@ const Projects = () => {
 
         setProjects(sortedProjects);
         console.log("Projects fetched and sorted:", sortedProjects);
-
-        // Check URL path after projects are loaded to open modal if needed
-        if (window.location.hash.includes("project-")) {
-          const projectName = decodeURIComponent(
-            window.location.hash.replace("project-", "")
-          );
-          const projectToOpen = sortedProjects.find(
-            (p) => p.name === projectName
-          );
-          if (projectToOpen) {
-            setSelectedProject(projectToOpen);
-          }
-        }
       } catch (error) {
         console.error("Error fetching projects:", error);
       }
@@ -63,24 +67,40 @@ const Projects = () => {
     fetchProjects();
   }, []);
 
+  // Check URL for project after projects are loaded
+  useEffect(() => {
+    if (projects.length > 0) {
+      checkUrlForProject();
+    }
+  }, [projects]);
+
+  // Handle browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = () => {
+      if (window.location.pathname.includes("/project-")) {
+        checkUrlForProject();
+      } else {
+        setSelectedProject(null);
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [projects]);
+
   const openProjectModal = (project) => {
     setSelectedProject(project);
     setCurrentImageIndex(0);
-    window.history.pushState(
-      {},
-      "",
-      `project-${encodeURIComponent(project.name)}`
-    );
+    // Update URL without reloading page
+    const newUrl = `/project-${encodeURIComponent(project.name)}`;
+    window.history.pushState({}, "", newUrl);
   };
 
   const closeProjectModal = () => {
     setSelectedProject(null);
     setCurrentImageIndex(0);
-    window.history.pushState(
-      {},
-      "",
-      window.location.pathname + window.location.search
-    );
+    // Remove project from URL
+    window.history.pushState({}, "", "/");
   };
 
   const nextImage = () => {
