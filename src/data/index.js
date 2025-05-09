@@ -7,7 +7,7 @@ export const personalInfo = {
   email: "sejeeltauseef21@gmail.com",
   phone: "07775560592",
   location: "Manchester, UK",
-  bio: "I’m a software developer with strong expertise in PHP, Laravel, and React, dedicated to creating high-performance and scalable applications.",
+  bio: "I’m a software developer with strong expertise in PHP <br /> Laravel, and React, dedicated to creating high-performance <br /> and scalable applications.",
   social: {
     github: "https://github.com/SejeelTauseef56", // Update with actual
     linkedin: "https://www.linkedin.com/in/sejeeltauseef/", // Update with actual
