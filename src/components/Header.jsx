@@ -50,7 +50,7 @@ const Header = ({ darkMode, setDarkMode }) => {
           {/* Dark Mode Toggle */}
           <button 
             onClick={() => setDarkMode(!darkMode)}
-            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 cursor-pointer"
             aria-label="Toggle dark mode"
           >
             {darkMode ? (
