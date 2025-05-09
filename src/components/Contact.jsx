@@ -50,7 +50,7 @@ const Contact = () => {
         <div className="flex flex-col md:flex-row gap-10">
           {/* Contact Form */}
           <div className="w-full md:w-7/12">
-            <div className="card p-6">
+            <div className="card p-6 bg-gray-900">
               <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                   <div>
@@ -61,6 +61,7 @@ const Contact = () => {
                       type="text"
                       id="name"
                       name="name"
+                      placeholder='Enter your name'
                       value={formData.name}
                       onChange={handleChange}
                       className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
@@ -75,6 +76,7 @@ const Contact = () => {
                       type="email"
                       id="email"
                       name="email"
+                      placeholder='Enter your email'
                       value={formData.email}
                       onChange={handleChange}
                       className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
@@ -90,6 +92,7 @@ const Contact = () => {
                     type="text"
                     id="subject"
                     name="subject"
+                    placeholder='Enter subject'
                     value={formData.subject}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
@@ -138,7 +141,7 @@ const Contact = () => {
 
           {/* Contact Information */}
           <div className="w-full md:w-5/12">
-            <div className="card p-6 h-full">
+            <div className="card p-6 h-full bg-gray-900">
               <h3 className="text-xl font-bold mb-6">Contact Information</h3>
               
               <div className="space-y-6">

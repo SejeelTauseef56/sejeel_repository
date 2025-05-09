@@ -15,7 +15,7 @@ const Projects = () => {
     "AppointMe",
     "AI-Summarizer",
     "NutriPAL",
-    "TaskFlow"
+    "TaskFlow",
   ];
 
   // Extract unique tags for filter buttons
@@ -35,19 +35,23 @@ const Projects = () => {
       try {
         const data = await getProjects();
         console.log("Fetched projects:", data);
-        
+
         // Sort projects according to WORK_ORDER
         const sortedProjects = data.sort((a, b) => {
           return WORK_ORDER.indexOf(a.name) - WORK_ORDER.indexOf(b.name);
         });
-        
+
         setProjects(sortedProjects);
         console.log("Projects fetched and sorted:", sortedProjects);
 
         // Check URL path after projects are loaded to open modal if needed
-        if (window.location.hash.includes('#project-')) {
-          const projectName = decodeURIComponent(window.location.hash.replace('#project-', ''));
-          const projectToOpen = sortedProjects.find(p => p.name === projectName);
+        if (window.location.hash.includes("project-")) {
+          const projectName = decodeURIComponent(
+            window.location.hash.replace("project-", "")
+          );
+          const projectToOpen = sortedProjects.find(
+            (p) => p.name === projectName
+          );
           if (projectToOpen) {
             setSelectedProject(projectToOpen);
           }
@@ -62,18 +66,26 @@ const Projects = () => {
   const openProjectModal = (project) => {
     setSelectedProject(project);
     setCurrentImageIndex(0);
-    window.history.pushState({}, '', `#project-${encodeURIComponent(project.name)}`);
+    window.history.pushState(
+      {},
+      "",
+      `project-${encodeURIComponent(project.name)}`
+    );
   };
 
   const closeProjectModal = () => {
     setSelectedProject(null);
     setCurrentImageIndex(0);
-    window.history.pushState({}, '', window.location.pathname + window.location.search);
+    window.history.pushState(
+      {},
+      "",
+      window.location.pathname + window.location.search
+    );
   };
 
   const nextImage = () => {
     if (selectedProject && selectedProject.images) {
-      setCurrentImageIndex((prevIndex) => 
+      setCurrentImageIndex((prevIndex) =>
         prevIndex === selectedProject.images.length - 1 ? 0 : prevIndex + 1
       );
     }
@@ -81,7 +93,7 @@ const Projects = () => {
 
   const prevImage = () => {
     if (selectedProject && selectedProject.images) {
-      setCurrentImageIndex((prevIndex) => 
+      setCurrentImageIndex((prevIndex) =>
         prevIndex === 0 ? selectedProject.images.length - 1 : prevIndex - 1
       );
     }
@@ -90,7 +102,7 @@ const Projects = () => {
   // Function to convert Contentful image URL to HTTPS
   const getHttpsImageUrl = (url) => {
     if (!url) return "/api/placeholder/400/250";
-    return url.startsWith('//') ? `https:${url}` : url;
+    return url.startsWith("//") ? `https:${url}` : url;
   };
 
   return (
@@ -127,15 +139,19 @@ const Projects = () => {
           {filteredProjects.map((project, index) => (
             <div
               key={index}
-              className="card group hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-700 rounded-lg overflow-hidden cursor-pointer"
+              className="card group hover:shadow-xl transition-all duration-300 bg-gray-900 rounded-lg overflow-hidden cursor-pointer"
               onClick={() => openProjectModal(project)}
             >
               {/* Project Image */}
-              <div className="relative overflow-hidden h-60">
+              <div className="relative overflow-hidden ">
                 <img
-                  src={project.image ? getHttpsImageUrl(project.image.url) : "/api/placeholder/400/250"}
+                  src={
+                    project.image
+                      ? getHttpsImageUrl(project.image.url)
+                      : "/api/placeholder/400/250"
+                  }
                   alt={project.name}
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-contain bg-gray-800 transform group-hover:scale-102 transition-transform duration-300"
                 />
                 {/* Project Links Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
@@ -165,22 +181,24 @@ const Projects = () => {
                   </div>
                 </div>
               </div>
-
               {/* Project Details */}
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 dark:text-white">{project.name}</h3>
+                <h3 className="text-xl font-bold mb-2 dark:text-white">
+                  {project.name}
+                </h3>
                 <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {project.tags && project.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  {project.tags &&
+                    project.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs rounded"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                 </div>
               </div>
             </div>
@@ -191,67 +209,108 @@ const Projects = () => {
       {/* Project Modal */}
       {selectedProject && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-gray-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
             <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
-              <h3 className="text-2xl font-bold dark:text-white">{selectedProject.name}</h3>
-              <button 
+              <h3 className="text-2xl font-bold dark:text-white">
+                {selectedProject.name}
+              </h3>
+              <button
                 onClick={closeProjectModal}
-                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 cursor-pointer"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             </div>
-            
+
             {/* Modal Content */}
             <div className="p-6">
               {/* Image Gallery */}
               {selectedProject.images && selectedProject.images.length > 0 && (
                 <div className="mb-6 relative">
-                  <img 
-                    src={getHttpsImageUrl(selectedProject.images[currentImageIndex].url)}
-                    alt={selectedProject.images[currentImageIndex].description || selectedProject.name}
+                  <img
+                    src={getHttpsImageUrl(
+                      selectedProject.images[currentImageIndex].url
+                    )}
+                    alt={
+                      selectedProject.images[currentImageIndex].description ||
+                      selectedProject.name
+                    }
                     className="w-full h-auto rounded-lg"
                   />
-                  
+
                   {/* Image Description */}
                   {selectedProject.images[currentImageIndex].description && (
                     <div className="mt-2 text-sm text-gray-600 dark:text-gray-400 italic">
                       {selectedProject.images[currentImageIndex].description}
                     </div>
                   )}
-                  
+
                   {/* Navigation Arrows (only if more than one image) */}
                   {selectedProject.images.length > 1 && (
                     <>
-                      <button 
+                      <button
                         onClick={(e) => {
                           e.stopPropagation();
                           prevImage();
                         }}
-                        className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full"
+                        className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full cursor-pointer"
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15 19l-7-7 7-7"
+                          />
                         </svg>
                       </button>
-                      <button 
+                      <button
                         onClick={(e) => {
                           e.stopPropagation();
                           nextImage();
                         }}
-                        className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full"
+                        className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full cursor-pointer"
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
                         </svg>
                       </button>
-                      
+
                       {/* Image Counter */}
                       <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
-                        {currentImageIndex + 1} / {selectedProject.images.length}
+                        {currentImageIndex + 1} /{" "}
+                        {selectedProject.images.length}
                       </div>
                     </>
                   )}
@@ -260,7 +319,9 @@ const Projects = () => {
 
               {/* Project Description */}
               <div className="mb-6">
-                <h4 className="text-xl font-semibold mb-2 dark:text-white">About this project</h4>
+                <h4 className="text-xl font-semibold mb-2 dark:text-white">
+                  About this project
+                </h4>
                 <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">
                   {selectedProject.description}
                 </p>
@@ -268,16 +329,19 @@ const Projects = () => {
 
               {/* Technologies Used */}
               <div className="mb-6">
-                <h4 className="text-xl font-semibold mb-2 dark:text-white">Technologies</h4>
+                <h4 className="text-xl font-semibold mb-2 dark:text-white">
+                  Technologies
+                </h4>
                 <div className="flex flex-wrap gap-2">
-                  {selectedProject.tags && selectedProject.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  {selectedProject.tags &&
+                    selectedProject.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                 </div>
               </div>
 
