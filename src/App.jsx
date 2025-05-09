@@ -27,13 +27,13 @@ function App() {
         <Hero />
       </div>
 
-      <main>
+      <div className="bg-gradient-to-b from-[#2f2379] to-indigo-600 min-h-screen">
         <About />
         <Skills />
         <Projects />
         <Contact />
-      </main>
-      <Footer />
+        <Footer />
+      </div>
     </div>
   );
 }

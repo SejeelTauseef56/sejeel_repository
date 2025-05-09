@@ -3,7 +3,7 @@ import { skills } from '../data/index'
 
 const Skills = () => {
   return (
-    <section id="skills" className="bg-gray-100 dark:bg-gray-900">
+    <section id="skills" className="">
       <div className="container">
         <div className="mx-auto max-w-3xl text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">{skills.title}</h2>

@@ -23,7 +23,7 @@ const Header = ({ darkMode, setDarkMode }) => {
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white dark:bg-gray-800 shadow-md py-2' : 'bg-transparent py-4'
+        scrolled ? 'bg-[#2423868a] shadow-md py-2' : 'bg-transparent py-4'
       }`}
     >
       <div className="container flex justify-between items-center">
@@ -41,7 +41,7 @@ const Header = ({ darkMode, setDarkMode }) => {
             <a 
               key={index} 
               href={link.href}
-              className="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+              className="hover:text-white text-[18px] font-medium cursor-pointer"
             >
               {link.name}
             </a>

@@ -39,7 +39,7 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="bg-gray-100 dark:bg-gray-900">
+    <section id="contact" className="">
       <div className="container">
         <div className="mx-auto max-w-3xl text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">{contactInfo.title}</h2>

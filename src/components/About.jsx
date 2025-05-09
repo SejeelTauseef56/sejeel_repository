@@ -3,7 +3,7 @@ import { aboutContent, personalInfo } from "../data/index";
 
 const About = () => {
   return (
-    <section id="about" className="bg-white dark:bg-gray-800 py-16">
+    <section id="about" className="py-16">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-3xl text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">{aboutContent.title}</h2>

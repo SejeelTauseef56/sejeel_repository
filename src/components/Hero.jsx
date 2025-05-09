@@ -22,7 +22,7 @@ const Hero = () => {
         </div>
 
         <div className="w-[100%] h-[100%] flex flex-col sm:mt-0 mt-4">
-          <h1 className="font-black text-white lg:text-[95px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2 text-center md:text-left mb-6">
+          <h1 className="font-black text-white lg:text-[90px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2 text-center md:text-left mb-6">
             <mark className="px-2 text-white bg-blue-600 rounded dark:bg-blue-400">
               Hi, I'm <span className="text-[#915eff]">Sejeel</span>
             </mark>
@@ -46,23 +46,19 @@ const Hero = () => {
               rel="noopener noreferrer"
               className="inline-block mt-4 mb-2 sm:mb-0 sm:mr-0 md:mr-4"
             >
-              <div 
-                className="flex items-center justify-center bg-[#0077B5] text-white rounded-md px-4 py-2 space-x-2 hover:scale-105 transition-transform active:scale-95"
-              >
+              <div className="flex items-center justify-center bg-[#0077B5] text-white rounded-md px-4 py-2 space-x-2 hover:scale-105 transition-transform active:scale-95">
                 <FontAwesomeIcon icon={faLinkedin} className="text-2xl" />
                 <span>LinkedIn</span>
               </div>
             </a>
-            
+
             <a
               href="https://drive.google.com/file/d/1Bd-BRVFet0SKcgTJZDwdcXUJxSlvMIXK/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-4 mb-2 sm:mb-0 sm:mr-0 md:mr-4"
             >
-              <div
-                className="flex items-center justify-center bg-[#7655a8] text-white rounded-md px-4 py-2 space-x-2 hover:scale-105 transition-transform active:scale-95"
-              >
+              <div className="flex items-center justify-center bg-[#7655a8] text-white rounded-md px-4 py-2 space-x-2 hover:scale-105 transition-transform active:scale-95">
                 <FontAwesomeIcon icon={faFileAlt} className="text-2xl" />
                 <span>CV</span>
               </div>
@@ -74,9 +70,7 @@ const Hero = () => {
       <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-white flex justify-center items-start p-2">
-            <div 
-              className="w-3 h-3 rounded-full bg-white mb-1 animate-bounce"
-            />
+            <div className="w-3 h-3 rounded-full bg-white mb-1 animate-bounce" />
           </div>
         </a>
       </div>
