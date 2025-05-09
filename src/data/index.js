@@ -7,7 +7,7 @@ export const personalInfo = {
   email: "sejeeltauseef21@gmail.com",
   phone: "07775560592",
   location: "Manchester, UK",
-  bio: "Software Developer with over 2 years of experience in PHP and Laravel. I build scalable web applications, manage databases with MySQL and PostgreSQL, and deliver seamless front-end experiences using React, Vue.js, and Next.js. I follow DevOps best practices, integrate APIs, and deploy solutions using Docker and AWS.",
+  bio: "I’m a software developer with strong expertise in PHP, Laravel, and React, dedicated to creating high-performance and scalable applications.",
   social: {
     github: "https://github.com/SejeelTauseef56", // Update with actual
     linkedin: "https://www.linkedin.com/in/sejeeltauseef/", // Update with actual
