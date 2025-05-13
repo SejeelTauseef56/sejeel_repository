@@ -2,6 +2,39 @@ import React from "react";
 import { aboutContent, personalInfo } from "../data/index";
 
 const About = () => {
+  // Technology terms to highlight
+  const techTerms = [
+    "PHP",
+    "Laravel",
+    "Vuejs",
+    "React",
+    "Nextjs",
+    "MySQL",
+    "PostgreSQL",
+    "API",
+    "AWS",
+    "Docker",
+    "JavaScript",
+    "Cypress",
+    "DevOps"
+  ];
+  
+  // Function to highlight tech terms in paragraphs
+  const highlightTechInText = (text) => {
+    let result = text;
+    
+    techTerms.forEach(term => {
+      // Creating a regex that matches the term as a whole word
+      const regex = new RegExp(`\\b${term}\\b`, 'gi');
+      result = result.replace(
+        regex, 
+        `<span class="text-purple-400 font-medium transition-colors duration-300 hover:text-purple-300">${term}</span>`
+      );
+    });
+    
+    return <p dangerouslySetInnerHTML={{ __html: result }} />;
+  };
+
   return (
     <section id="about" className="py-16">
       <div className="container mx-auto px-4">
@@ -11,18 +44,18 @@ const About = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center">
-          {/* About Text */}
+          {/* About Text with Highlighted Tech Terms */}
           <div className="w-full md:w-2/3 mx-auto text-center">
             <div className="prose prose-lg dark:prose-invert max-w-none">
               {aboutContent.description
                 .split("\n\n")
                 .map((paragraph, index) => (
-                  <p
+                  <div 
                     key={index}
                     className="mb-4 text-gray-700 dark:text-gray-300"
                   >
-                    {paragraph}
-                  </p>
+                    {highlightTechInText(paragraph)}
+                  </div>
                 ))}
             </div>
 
