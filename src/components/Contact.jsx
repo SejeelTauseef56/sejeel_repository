@@ -116,7 +116,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn btn-primary w-full flex justify-center items-center"
+                  className="btn btn-primary w-full flex justify-center items-center cursor-pointer"
                 >
                   {isSubmitting ? (
                     <>
