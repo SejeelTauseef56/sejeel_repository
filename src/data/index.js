@@ -12,7 +12,7 @@ export const personalInfo = {
     github: "https://github.com/SejeelTauseef56", // Update with actual
     linkedin: "https://www.linkedin.com/in/sejeeltauseef/", // Update with actual
   },
-  resumeLink: "/Sejeel-Tauseef-Resume.pdf", // Place your resume in the public folder
+  resumeLink: "https://drive.google.com/file/d/1mMLjBWyT94Xs1dxZj8D4tNlNkJBdRqfa/view?usp=sharing",
 };
 
 // Navigation Links

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { contactInfo, personalInfo } from "../data/index";
-import env from "./env";
+import env from "../data/env";
 import emailjs from "@emailjs/browser";
 
 const Contact = () => {
