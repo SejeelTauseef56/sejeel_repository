@@ -10,13 +10,63 @@ const Projects = () => {
 
   // Define the preferred order of projects
   const WORK_ORDER = [
-    "My Portfolio",
-    "Structify",
     "AppointMe",
-    "AI-Summarizer",
+    "Structify",
     "NutriPAL",
+    "AI-Summarizer",
     "TaskFlow",
+    "My Portfolio",
   ];
+
+  // Define colors for different technology tags
+  const tagColors = {
+    React: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+    Next: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+    Node: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
+    MongoDB:
+      "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
+    JavaScript:
+      "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
+    TypeScript:
+      "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+    Python: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+    CSS: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
+    HTML: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
+    tailwind:
+      "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300",
+    Tailwind:
+      "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300",
+    ThreeJS:
+      "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
+    Contentful:
+      "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
+    Vue: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300",
+    Angular: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
+    Express: "bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300",
+    "Next.js": "bg-black text-white dark:bg-white/20 dark:text-white",
+    Vite: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
+    Firebase:
+      "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
+    API: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300",
+    OpenAI:
+      "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300",
+    PostgreSQL:
+      "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+    MySQL:
+      "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
+    Redis: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
+    Docker: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+    AWS: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
+    Git: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
+  };
+
+  // Get color for a tag
+  const getTagColor = (tag) => {
+    return (
+      tagColors[tag] ||
+      "bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300"
+    );
+  };
 
   // Extract unique tags for filter buttons
   const uniqueTags = [
@@ -34,12 +84,8 @@ const Projects = () => {
   const checkUrlForProject = () => {
     const path = window.location.pathname;
     if (path.includes("/project-")) {
-      const projectName = decodeURIComponent(
-        path.split("/project-")[1]
-      );
-      const projectToOpen = projects.find(
-        (p) => p.name === projectName
-      );
+      const projectName = decodeURIComponent(path.split("/project-")[1]);
+      const projectToOpen = projects.find((p) => p.name === projectName);
       if (projectToOpen) {
         setSelectedProject(projectToOpen);
         setCurrentImageIndex(0);
@@ -101,6 +147,13 @@ const Projects = () => {
     setCurrentImageIndex(0);
     // Remove project from URL
     window.history.pushState({}, "", "/");
+  };
+
+  // Handle clicking outside modal
+  const handleModalClick = (e) => {
+    if (e.target === e.currentTarget) {
+      closeProjectModal();
+    }
   };
 
   const nextImage = () => {
@@ -176,17 +229,6 @@ const Projects = () => {
                 {/* Project Links Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
                   <div className="flex gap-4">
-                    {project.projectUrl && (
-                      <a
-                        href={project.projectUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Live Demo
-                      </a>
-                    )}
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
@@ -214,7 +256,9 @@ const Projects = () => {
                     project.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs rounded"
+                        className={`px-2 py-1 text-xs rounded font-medium ${getTagColor(
+                          tag
+                        )}`}
                       >
                         {tag}
                       </span>
@@ -228,20 +272,23 @@ const Projects = () => {
 
       {/* Project Modal */}
       {selectedProject && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
+          onClick={handleModalClick}
+        >
+          <div className="bg-gray-900 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
             {/* Modal Header */}
-            <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
-              <h3 className="text-2xl font-bold dark:text-white">
+            <div className="p-6 border-b border-gray-700 flex justify-between items-center">
+              <h3 className="text-2xl font-bold text-white">
                 {selectedProject.name}
               </h3>
               <button
                 onClick={closeProjectModal}
-                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 cursor-pointer"
+                className="w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-full flex items-center justify-center text-gray-300 hover:text-white transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="h-5 w-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -261,20 +308,22 @@ const Projects = () => {
               {/* Image Gallery */}
               {selectedProject.images && selectedProject.images.length > 0 && (
                 <div className="mb-6 relative">
-                  <img
-                    src={getHttpsImageUrl(
-                      selectedProject.images[currentImageIndex].url
-                    )}
-                    alt={
-                      selectedProject.images[currentImageIndex].description ||
-                      selectedProject.name
-                    }
-                    className="w-full h-auto rounded-lg"
-                  />
+                  <div className="rounded-lg overflow-hidden bg-gray-800">
+                    <img
+                      src={getHttpsImageUrl(
+                        selectedProject.images[currentImageIndex].url
+                      )}
+                      alt={
+                        selectedProject.images[currentImageIndex].description ||
+                        selectedProject.name
+                      }
+                      className="w-full h-auto"
+                    />
+                  </div>
 
                   {/* Image Description */}
                   {selectedProject.images[currentImageIndex].description && (
-                    <div className="mt-2 text-sm text-gray-600 dark:text-gray-400 italic">
+                    <div className="mt-3 text-sm text-gray-400 italic text-center">
                       {selectedProject.images[currentImageIndex].description}
                     </div>
                   )}
@@ -287,7 +336,7 @@ const Projects = () => {
                           e.stopPropagation();
                           prevImage();
                         }}
-                        className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full cursor-pointer"
+                        className="absolute top-1/2 left-4 -translate-y-1/2 w-10 h-10 bg-black/60 hover:bg-black/80 text-white rounded-full flex items-center justify-center transition-colors"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -309,7 +358,7 @@ const Projects = () => {
                           e.stopPropagation();
                           nextImage();
                         }}
-                        className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full cursor-pointer"
+                        className="absolute top-1/2 right-4 -translate-y-1/2 w-10 h-10 bg-black/60 hover:bg-black/80 text-white rounded-full flex items-center justify-center transition-colors"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -328,7 +377,7 @@ const Projects = () => {
                       </button>
 
                       {/* Image Counter */}
-                      <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                      <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-medium">
                         {currentImageIndex + 1} /{" "}
                         {selectedProject.images.length}
                       </div>
@@ -337,56 +386,33 @@ const Projects = () => {
                 </div>
               )}
 
-              {/* Project Description */}
-              <div className="mb-6">
-                <h4 className="text-xl font-semibold mb-2 dark:text-white">
-                  About this project
-                </h4>
-                <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">
-                  {selectedProject.description}
-                </p>
-              </div>
+              {/* Project Description - Only show if different from image description */}
+              {selectedProject.description && (
+                <div className="mb-6 hidden md:block">
+                  <p className="text-gray-300 text-lg leading-relaxed">
+                    {selectedProject.description}
+                  </p>
+                </div>
+              )}
 
               {/* Technologies Used */}
-              <div className="mb-6">
-                <h4 className="text-xl font-semibold mb-2 dark:text-white">
-                  Technologies
+              <div className="mb-8">
+                <h4 className="text-xl font-semibold mb-4 text-white">
+                  Technologies Used
                 </h4>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-3">
                   {selectedProject.tags &&
                     selectedProject.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full"
+                        className={`px-4 py-2 rounded-full text-sm font-medium ${getTagColor(
+                          tag
+                        )}`}
                       >
                         {tag}
                       </span>
                     ))}
                 </div>
-              </div>
-
-              {/* Project Links */}
-              <div className="flex gap-4">
-                {selectedProject.projectUrl && (
-                  <a
-                    href={selectedProject.projectUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md"
-                  >
-                    View Live Demo
-                  </a>
-                )}
-                {selectedProject.githubUrl && (
-                  <a
-                    href={selectedProject.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn bg-gray-800 hover:bg-gray-900 text-white px-6 py-2 rounded-md"
-                  >
-                    View Source Code
-                  </a>
-                )}
               </div>
             </div>
           </div>

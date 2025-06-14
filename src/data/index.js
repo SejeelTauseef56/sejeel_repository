@@ -4,15 +4,15 @@
 export const personalInfo = {
   name: "Sejeel Tauseef",
   title: "Software Developer",
-  email: "sejeeltauseef21@gmail.com",
+  email: "sejeelm56@gmail.com",
   phone: "07775560592",
   location: "Manchester, UK",
-  bio: "I’m a software developer with strong expertise in PHP <br /> Laravel, and React, dedicated to creating high-performance <br /> and scalable applications.",
+  bio: "I’m a software developer with strong expertise in PHP <br /> Laravel, and Vue, dedicated to creating high-performance <br /> and scalable applications.",
   social: {
-    github: "https://github.com/SejeelTauseef56", // Update with actual
-    linkedin: "https://www.linkedin.com/in/sejeeltauseef/", // Update with actual
+    github: "https://github.com/SejeelTauseef56",
+    linkedin: "https://www.linkedin.com/in/sejeeltauseef/", 
   },
-  resumeLink: "https://drive.google.com/file/d/1mMLjBWyT94Xs1dxZj8D4tNlNkJBdRqfa/view?usp=sharing",
+  resumeLink: "https://drive.google.com/file/d/1Bd-BRVFet0SKcgTJZDwdcXUJxSlvMIXK/view?usp=sharing",
 };
 
 // Navigation Links
@@ -27,7 +27,7 @@ export const navLinks = [
 // About Section
 export const aboutContent = {
   title: "About Me",
-  description: `Hi, I’m Sejeel Tausef, a software developer with 2 years of experience specializing in PHP and Laravel, and a strong focus on building scalable, high-performance web applications.
+  description: `Hi, I’m Sejeel Tauseef, a software developer with 2 years of experience specializing in PHP and Laravel, and a strong focus on building scalable, high-performance web applications.
 
 I have a solid background in front-end development, utilizing Vuejs, React, and Nextjs to create seamless and user-friendly interfaces.
 
@@ -140,7 +140,7 @@ export const projects = [
 export const contactInfo = {
   title: "Get In Touch",
   description: "Have a project in mind or want to collaborate? Let's connect.",
-  email: "sejeeltauseef21@gmail.com",
+  email: "sejeelm56@gmail.com",
 };
 
 // Footer Information
