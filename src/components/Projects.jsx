@@ -248,7 +248,7 @@ const Projects = () => {
                 <h3 className="text-xl font-bold mb-2 dark:text-white">
                   {project.name}
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
+                <p className="text-gray-700 dark:text-gray-100 mb-4 line-clamp-3">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">

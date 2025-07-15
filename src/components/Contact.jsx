@@ -57,9 +57,9 @@ const Contact = () => {
     <section id="contact" className="">
       <div className="container">
         <div className="mx-auto max-w-3xl text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">{contactInfo.title}</h2>
+          <h2 className="text-3xl font-bold mb-4 text-gray-100">{contactInfo.title}</h2>
           <div className="h-1 w-20 bg-blue-500 mx-auto mb-8"></div>
-          <p className="text-gray-700 dark:text-gray-300">
+          <p className="text-gray-700 dark:text-gray-100">
             {contactInfo.description}
           </p>
         </div>
