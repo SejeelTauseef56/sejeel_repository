@@ -46,13 +46,13 @@ const About = () => {
         <div className="flex flex-col items-center justify-center">
           {/* About Text with Highlighted Tech Terms */}
           <div className="w-full md:w-2/3 mx-auto text-center">
-            <div className="prose prose-lg dark:prose-invert max-w-none">
+            <div className="prose prose-xl dark:prose-invert max-w-none">
               {aboutContent.description
                 .split("\n\n")
                 .map((paragraph, index) => (
                   <div 
                     key={index}
-                    className="mb-4 text-gray-700 dark:text-gray-300"
+                    className="mb-4 text-white dark:text-gray-100 text-lg"
                   >
                     {highlightTechInText(paragraph)}
                   </div>
