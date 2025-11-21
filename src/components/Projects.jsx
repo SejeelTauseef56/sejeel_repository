@@ -11,6 +11,7 @@ const Projects = () => {
   // Define the preferred order of projects
   const WORK_ORDER = [
     "AppointMe",
+    "TQUK",
     "Structify",
     "NutriPAL",
     "AI-Summarizer",
@@ -19,46 +20,44 @@ const Projects = () => {
   ];
 
   // Define colors for different technology tags
-  const tagColors = {
-    React: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
-    Next: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
-    Node: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
-    MongoDB:
-      "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
-    JavaScript:
-      "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
-    TypeScript:
-      "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
-    Python: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
-    CSS: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
-    HTML: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
-    tailwind:
-      "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300",
-    Tailwind:
-      "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300",
-    ThreeJS:
-      "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
-    Contentful:
-      "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
-    Vue: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300",
-    Angular: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
-    Express: "bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300",
-    "Next.js": "bg-black text-white dark:bg-white/20 dark:text-white",
-    Vite: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
-    Firebase:
-      "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
-    API: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300",
-    OpenAI:
-      "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300",
-    PostgreSQL:
-      "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
-    MySQL:
-      "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
-    Redis: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
-    Docker: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
-    AWS: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
-    Git: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
-  };
+const tagColors = {
+  React: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+  Next: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+  Node: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
+  MongoDB: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
+  JavaScript: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
+  TypeScript: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+  Python: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+  CSS: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
+  HTML: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
+  tailwind: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300",
+  Tailwind: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300",
+  ThreeJS: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
+  Contentful: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
+  Vue: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300",
+  Angular: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
+  Express: "bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300",
+  "Next.js": "bg-black text-white dark:bg-white/20 dark:text-white",
+  Vite: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
+  Firebase: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
+  API: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300",
+  OpenAI: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300",
+  PostgreSQL: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+  MySQL: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
+  Redis: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
+  Docker: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+  AWS: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
+  Git: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
+
+  // ⭐ Added Below
+  WordPress: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+  Elementor: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300",
+  PHP: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300",
+  Laravel: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
+  Inertia: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
+  "Inertia.js": "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
+};
+
 
   // Get color for a tag
   const getTagColor = (tag) => {
