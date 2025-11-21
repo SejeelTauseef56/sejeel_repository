@@ -10,9 +10,10 @@ export const personalInfo = {
   bio: "I’m a software developer with strong expertise in PHP <br /> Laravel, and Vue, dedicated to creating high-performance <br /> and scalable applications.",
   social: {
     github: "https://github.com/SejeelTauseef56",
-    linkedin: "https://www.linkedin.com/in/sejeeltauseef/", 
+    linkedin: "https://www.linkedin.com/in/sejeeltauseef/",
   },
-  resumeLink: "https://drive.google.com/file/d/1Bd-BRVFet0SKcgTJZDwdcXUJxSlvMIXK/view?usp=sharing",
+  resumeLink:
+    "https://drive.google.com/file/d/1Bd-BRVFet0SKcgTJZDwdcXUJxSlvMIXK/view?usp=sharing",
 };
 
 // Navigation Links
@@ -35,8 +36,6 @@ At One Claims Management, I work on both the internal claims and lead management
 
 I’m passionate about clean code, modern DevOps practices, and creating reliable digital experiences. Always open to collaborating on exciting projects.`,
 };
-
-
 
 // Skills
 export const skills = {
@@ -129,6 +128,13 @@ export const projects = [
     imageUrl: "/portfolio.jpg",
     liveUrl: "#",
     githubUrl: "https://github.com/yourusername/portfolio",
+  },
+  {
+    title: "TQUK - Training Qualifications UK",
+    description: "While working at Chippy Digital, I was the main developer responsible for building the WordPress landing pages for TQUK (Training Qualifications UK). I developed these using ACF fields and Elementor, creating custom blocks and handling the full build-out of the pages.",
+    tags: ["Wordpress", "Elementor", "PHP"],
+    imageUrl: "/hq720.jpg",
+    liveUrl: "https://www.tquk.org/",
   },
 ];
 
