@@ -29,14 +29,14 @@ export const aboutContent = {
   title: "About Me",
   description: `Hi, I’m Sejeel Tauseef, a Software Developer specialising in PHP and Laravel, focused on building scalable and high-performance web applications.
 
-I work with modern frontend technologies including Vue.js, React, and Next.js to create seamless and responsive user experiences.
+I work across the full stack using technologies such as Vue.js, React, Next.js, MySQL, PostgreSQL, AWS, and Docker. I also build custom WordPress solutions using Bricks Builder and Elementor, including landing pages and organic site improvements.
 
-I’m also skilled in MySQL, PostgreSQL, AWS, Docker, and API integrations, with a strong emphasis on clean code and maintainable architecture.
+At One Claims Management, I work on both the internal claims and lead management CRM as well as the company’s WordPress website. My role includes developing CRM features, automations, API integrations, and performance improvements, alongside creating new landing pages and enhancing the overall web presence.
 
-Currently at Chippy Digital, I contribute to developing robust applications while ensuring reliable automated testing using Cypress.
-
-Passionate about modern DevOps practices and building impactful digital solutions. Always open to collaborating on exciting projects.`,
+I’m passionate about clean code, modern DevOps practices, and creating reliable digital experiences. Always open to collaborating on exciting projects.`,
 };
+
+
 
 // Skills
 export const skills = {
@@ -116,7 +116,7 @@ export const projects = [
     title: "TaskFlow",
     description:
       "A full-featured task management and productivity tool with authentication and team collaboration features.",
-    tags: ["Vue.js", "Firebase", "Tailwind CSS"],
+    tags: ["Vue.js", "Laravel", "Inertia", "Tailwind CSS"],
     imageUrl: "/taskflow.jpg",
     liveUrl: "#",
     githubUrl: "https://github.com/yourusername/taskflow",
