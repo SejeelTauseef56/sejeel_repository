@@ -75,62 +75,7 @@ export const skills = {
 };
 
 // Projects
-export const projects = [
-  {
-    title: "NutriPAL",
-    description:
-      "A meal planning and nutrition tracking app built with a focus on accessibility and responsive design.",
-    tags: ["Vue.js", "Laravel", "MySQL"],
-    imageUrl: "/nutripal.jpg", // Replace with actual image
-    liveUrl: "#",
-    githubUrl: "https://github.com/yourusername/nutripal", // Replace with actual
-  },
-  {
-    title: "AppointMe",
-    description:
-      "An appointment management tool to book, cancel, and manage personal or client meetings.",
-    tags: ["React", "Tailwind CSS", "Laravel"],
-    imageUrl: "/appointme.jpg",
-    liveUrl: "#",
-    githubUrl: "https://github.com/yourusername/appointme",
-  },
-  {
-    title: "Structify",
-    description:
-      "A platform to manage project structure and team collaboration, integrated with CI/CD.",
-    tags: ["Next.js", "Node.js", "PostgreSQL", "Docker"],
-    imageUrl: "/structify.jpg",
-    liveUrl: "#",
-    githubUrl: "https://github.com/yourusername/structify",
-  },
-  {
-    title: "AI-Summarizer",
-    description:
-      "A tool that summarizes long texts and articles using OpenAI's GPT model.",
-    tags: ["React", "API", "Tailwind CSS"],
-    imageUrl: "/ai-summarizer.jpg",
-    liveUrl: "#",
-    githubUrl: "https://github.com/yourusername/ai-summarizer",
-  },
-  {
-    title: "TaskFlow",
-    description:
-      "A full-featured task management and productivity tool with authentication and team collaboration features.",
-    tags: ["Vue.js", "Laravel", "Inertia", "Tailwind CSS"],
-    imageUrl: "/taskflow.jpg",
-    liveUrl: "#",
-    githubUrl: "https://github.com/yourusername/taskflow",
-  },
-  {
-    title: "Portfolio Website",
-    description:
-      "My personal portfolio built to showcase my projects and skills.",
-    tags: ["React", "Tailwind CSS", "Vite"],
-    imageUrl: "/portfolio.jpg",
-    liveUrl: "#",
-    githubUrl: "https://github.com/yourusername/portfolio",
-  },
-];
+
 
 // Contact Section
 export const contactInfo = {
