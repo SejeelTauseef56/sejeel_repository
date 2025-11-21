@@ -185,8 +185,7 @@ const Projects = () => {
           <h2 className="text-3xl font-bold mb-4">My Projects</h2>
           <div className="h-1 w-20 bg-blue-500 mx-auto mb-8"></div>
           <p className="text-gray-700 dark:text-gray-100">
-            Here are some of the projects I've worked on. Click on any project
-            to learn more.
+            These are some of my older passion projects. I’m currently focused on a larger project. Click any project to learn more.
           </p>
         </div>
 
