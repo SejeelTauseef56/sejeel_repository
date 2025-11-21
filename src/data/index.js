@@ -27,19 +27,15 @@ export const navLinks = [
 // About Section
 export const aboutContent = {
   title: "About Me",
-  description: `Hi, I’m Sejeel Tauseef, a software developer with 2 years of experience specializing in PHP and Laravel, and a strong focus on building scalable, high-performance web applications.
+  description: `Hi, I’m Sejeel Tauseef, a Software Developer specialising in PHP and Laravel, focused on building scalable and high-performance web applications.
 
-I have a solid background in front-end development, utilizing Vuejs, React, and Nextjs to create seamless and user-friendly interfaces.
+I work with modern frontend technologies including Vue.js, React, and Next.js to create seamless and responsive user experiences.
 
-I’m also proficient in database management with MySQL and PostgreSQL and have hands-on experience with API integrations, cloud technologies (AWS), and containerization with Docker.
+I’m also skilled in MySQL, PostgreSQL, AWS, Docker, and API integrations, with a strong emphasis on clean code and maintainable architecture.
 
-Currently, I’m part of the team at Chippy Digital, where I work on developing robust applications with PHP and Laravel while ensuring smooth front-end experiences with modern JavaScript frameworks.
+Currently at Chippy Digital, I contribute to developing robust applications while ensuring reliable automated testing using Cypress.
 
-I’m also skilled in automated testing using Cypress, ensuring the reliability and maintainability of the software.
-
-I’m passionate about clean code, DevOps best practices, and staying up to date with the latest technology trends to create impactful digital solutions.
-
-Let’s connect if you're looking for a dedicated developer to collaborate on exciting projects!`,
+Passionate about modern DevOps practices and building impactful digital solutions. Always open to collaborating on exciting projects.`,
 };
 
 // Skills
