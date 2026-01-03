@@ -6,7 +6,7 @@ export const personalInfo = {
   title: "Software Developer",
   email: "sejeelm56@gmail.com",
   phone: "07775560592",
-  location: "Manchester, UK",
+  location: "Greater Manchester, UK",
   bio: "I’m a software developer with strong expertise in PHP <br /> Laravel, and Vue, dedicated to creating high-performance <br /> and scalable applications.",
   social: {
     github: "https://github.com/SejeelTauseef56",
@@ -147,7 +147,7 @@ export const contactInfo = {
 
 // Footer Information
 export const footerInfo = {
-  text: "© 2025 Sejeel Tauseef. All rights reserved.",
+  text: "© 2026 Sejeel Tauseef. All rights reserved.",
   privacyPolicy: "#",
   termsOfService: "#",
 };
