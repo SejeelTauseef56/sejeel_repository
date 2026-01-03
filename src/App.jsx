@@ -375,8 +375,8 @@ function About() {
 
   return (
     <Section id="about">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-        <div className="lg:col-span-5 overflow-visible">
+  <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+    <div className="order-2 lg:order-1 lg:col-span-5 overflow-visible">
           <div className="relative">
             <div className="absolute -inset-8 bg-[radial-gradient(circle_at_30%_40%,rgba(59,130,246,0.20),transparent_60%),radial-gradient(circle_at_80%_60%,rgba(236,72,153,0.12),transparent_62%)] blur-2xl" />
             <div className="relative">
@@ -394,7 +394,7 @@ function About() {
           </div>
         </div>
 
-        <div className="lg:col-span-7">
+    <div className="order-1 lg:order-2 lg:col-span-7">
           <SectionHeading
             eyebrow="About"
             title={aboutContent?.title ?? "About Me"}
