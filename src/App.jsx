@@ -172,7 +172,7 @@ function Header() {
         "fixed top-0 left-0 w-full z-50 transition-all duration-300",
         "pt-[env(safe-area-inset-top)]",
         scrolled
-          ? "bg-[#0b1224]/70 backdrop-blur-xl border-b border-white/10"
+          ? "bg-[#0b1224]/70 backdrop-blur-xl"
           : "bg-transparent"
       )}
     >
