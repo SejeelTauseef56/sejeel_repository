@@ -15,8 +15,8 @@ import {
 import useContentful from "./data/useContentful";
 import env from "./data/env";
 import emailjs from "@emailjs/browser";
-import heroicon from "../src/assets/web-design-with-hands-sale-background.png"
-import abouticon from "../src/assets/vecteezy_3d-illustration-of-software-development_36584124.png"
+import heroicon from "../src/assets/hero_icon.png"
+import abouticon from "../src/assets/software_icon.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
@@ -280,7 +280,7 @@ function Hero() {
 
       <div className="relative z-10">
         <Container className="pt-16 sm:pt-12 mb-12 pb-20 sm:pb-28">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center mt-24">
             {/* Left */}
             <div>
               <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/12 px-4 py-2 text-sm text-white/80">
@@ -806,8 +806,7 @@ function Contact() {
         </div>
 
         <div className="lg:col-span-7">
-          {/* Minimal panel (not “glass card everywhere”) */}
-          <div className="border border-white/10 bg-white/[0.04] shadow-[0_12px_50px_rgba(0,0,0,0.25)] p-6">
+          <div className="border border-white/10 bg-white/5 backdrop-blur-xl p-6 sm:p-8 shadow-[0_12px_40px_rgba(0,0,0,0.25)] rounded-2xl">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
