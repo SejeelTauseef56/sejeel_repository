@@ -15,8 +15,10 @@ import {
 import useContentful from "./data/useContentful";
 import env from "./data/env";
 import emailjs from "@emailjs/browser";
-import heroicon from "../src/assets/hero_icon.png"
-import abouticon from "../src/assets/software_icon.png"
+
+import heroicon from "../src/assets/hero_icon.png";
+import abouticon from "../src/assets/software_icon.png";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
@@ -47,13 +49,7 @@ const safeUrl = (u) => {
 /* --------------------------- spacing + section rhythm --------------------------- */
 
 const Section = ({ id, className = "", children }) => (
-  <section
-    id={id}
-    className={cx(
-      "scroll-mt-24 py-16 sm:py-20",
-      className
-    )}
-  >
+  <section id={id} className={cx("scroll-mt-24 sm:scroll-mt-28 py-14 sm:py-18", className)}>
     <Container>{children}</Container>
   </section>
 );
@@ -61,17 +57,13 @@ const Section = ({ id, className = "", children }) => (
 const SectionHeading = ({ eyebrow, title, subtitle }) => (
   <div className="max-w-2xl">
     {eyebrow ? (
-      <p className="text-sm font-semibold tracking-wide text-white/55">
-        {eyebrow}
-      </p>
+      <p className="text-sm font-semibold tracking-wide text-white/55">{eyebrow}</p>
     ) : null}
     <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
       {title}
     </h2>
     {subtitle ? (
-      <p className="mt-3 text-base sm:text-lg text-white/70 leading-relaxed">
-        {subtitle}
-      </p>
+      <p className="mt-3 text-base sm:text-lg text-white/70 leading-relaxed">{subtitle}</p>
     ) : null}
   </div>
 );
@@ -79,7 +71,6 @@ const SectionHeading = ({ eyebrow, title, subtitle }) => (
 /* ----------------------------- badge colors (global) ----------------------------- */
 
 const TAG_STYLES = {
-  // Frontend
   React: "bg-cyan-500/14 text-cyan-100 border-cyan-300/20",
   "Vue.js": "bg-emerald-500/14 text-emerald-100 border-emerald-300/20",
   Vue: "bg-emerald-500/14 text-emerald-100 border-emerald-300/20",
@@ -91,8 +82,6 @@ const TAG_STYLES = {
   "Tailwind CSS": "bg-cyan-500/14 text-cyan-100 border-cyan-300/20",
   ThreeJS: "bg-violet-500/14 text-violet-100 border-violet-300/20",
   "Three.js": "bg-violet-500/14 text-violet-100 border-violet-300/20",
-
-  // Backend
   PHP: "bg-indigo-500/14 text-indigo-100 border-indigo-300/20",
   Laravel: "bg-rose-500/14 text-rose-100 border-rose-300/20",
   "Node.js": "bg-lime-500/14 text-lime-100 border-lime-300/20",
@@ -103,8 +92,6 @@ const TAG_STYLES = {
   "REST APIs": "bg-slate-500/14 text-slate-100 border-slate-300/20",
   API: "bg-slate-500/14 text-slate-100 border-slate-300/20",
   OpenAI: "bg-fuchsia-500/14 text-fuchsia-100 border-fuchsia-300/20",
-
-  // Tools / platforms
   Docker: "bg-sky-500/14 text-sky-100 border-sky-300/20",
   AWS: "bg-amber-500/14 text-amber-100 border-amber-300/20",
   Git: "bg-slate-500/14 text-slate-100 border-slate-300/20",
@@ -123,12 +110,12 @@ const Tag = ({ children, className = "" }) => {
   return (
     <span
       className={cx(
-        "inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold",
+        "inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold max-w-full",
         style,
         className
       )}
     >
-      {children}
+      <span className="truncate">{children}</span>
     </span>
   );
 };
@@ -138,22 +125,11 @@ const Tag = ({ children, className = "" }) => {
 function HeroBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-      {/* Base */}
       <div className="absolute inset-0 bg-[#0b1224]" />
-
-      {/* Big gradient blocks (blue left -> warm right) */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_40%,rgba(59,130,246,0.62),transparent_55%),radial-gradient(circle_at_52%_46%,rgba(99,102,241,0.28),transparent_62%),radial-gradient(circle_at_86%_35%,rgba(245,158,11,0.28),transparent_58%),radial-gradient(circle_at_82%_80%,rgba(236,72,153,0.16),transparent_60%)]" />
-
-      {/* Left->Right wash */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-transparent to-amber-500/10" />
-
-      {/* Grid */}
-      <div className="absolute inset-0 opacity-[0.30] bg-[linear-gradient(to_right,rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.18)_1px,transparent_1px)] bg-[size:64px_64px]" />
-
-      {/* Soft vignette */}
+      <div className="absolute inset-0 opacity-[0.28] bg-[linear-gradient(to_right,rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.18)_1px,transparent_1px)] bg-[size:64px_64px]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.24)_100%)]" />
-
-      {/* Fade-out bottom (so the next section doesn't "peek") */}
       <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-b from-transparent to-[#0f172a]" />
     </div>
   );
@@ -165,31 +141,55 @@ function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const first = personalInfo?.name?.split(" ")[0] ?? "Sejeel";
+  const last = personalInfo?.name?.split(" ")[1] ?? "Tauseef";
+  const initials = `${first?.[0] ?? "S"}${last?.[0] ?? "T"}`.toUpperCase();
+
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.overscrollBehavior = "contain";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.overscrollBehavior = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.overscrollBehavior = "";
+    };
+  }, [isOpen]);
+
   return (
     <header
       className={cx(
         "fixed top-0 left-0 w-full z-50 transition-all duration-300",
-        scrolled ? "bg-[#0b1224]/55 backdrop-blur-xl" : "bg-transparent"
+        "pt-[env(safe-area-inset-top)]",
+        scrolled
+          ? "bg-[#0b1224]/70 backdrop-blur-xl border-b border-white/10"
+          : "bg-transparent"
       )}
     >
       <Container className="h-16 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2">
-          <span className="text-white font-semibold tracking-tight">
-            {personalInfo?.name?.split(" ")[0] ?? "Sejeel"}
-          </span>
-          <span className="text-white/70 font-semibold tracking-tight">
-            {personalInfo?.name?.split(" ")[1] ?? "Tauseef"}
-          </span>
+        <a href="#home" className="flex items-center gap-3 min-w-0" onClick={() => setIsOpen(false)}>
+          <div className="w-10 h-10 rounded-2xl bg-white/6 border border-white/12 ring-1 ring-white/10 overflow-hidden flex items-center justify-center">
+            <div className="w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(34,211,238,0.35),transparent_55%),radial-gradient(circle_at_80%_30%,rgba(99,102,241,0.32),transparent_55%),radial-gradient(circle_at_70%_90%,rgba(245,158,11,0.22),transparent_60%)] flex items-center justify-center">
+              <span className="text-white font-black tracking-tight">{initials}</span>
+            </div>
+          </div>
+
+          <div className="flex items-baseline gap-2 min-w-0">
+            <span className="text-white font-semibold tracking-tight truncate">{first}</span>
+            <span className="text-white/70 font-semibold tracking-tight truncate">{last}</span>
+          </div>
         </a>
 
-        {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-7">
           {navLinks.map((l) => (
             <a
@@ -208,11 +208,11 @@ function Header() {
           </a>
         </nav>
 
-        {/* Mobile */}
         <button
-          className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white/10 border border-white/12"
+          className="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/8 border border-white/12 ring-1 ring-white/10 active:scale-[0.98] transition"
           onClick={() => setIsOpen((s) => !s)}
           aria-label="Toggle menu"
+          aria-expanded={isOpen}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -222,45 +222,45 @@ function Header() {
             stroke="currentColor"
           >
             {isOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             )}
           </svg>
         </button>
       </Container>
 
       {isOpen && (
-        <div className="md:hidden border-t border-white/10 bg-[#0b1224]/80 backdrop-blur-xl">
-          <Container className="py-4 flex flex-col gap-3">
-            {navLinks.map((l) => (
+        <div
+          className="md:hidden fixed inset-0 z-50"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) setIsOpen(false);
+          }}
+        >
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+
+          <div className="absolute left-0 right-0 top-[calc(env(safe-area-inset-top)+64px)] border-t border-white/10 bg-[#0b1224]/90 backdrop-blur-xl">
+            <Container className="py-4 flex flex-col gap-2">
+              {navLinks.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  className="py-3 text-white/85 hover:text-white transition"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {l.name}
+                </a>
+              ))}
+
               <a
-                key={l.href}
-                href={l.href}
-                className="py-2 text-white/80 hover:text-white transition"
+                href="#contact"
+                className="mt-2 inline-flex items-center justify-center rounded-2xl bg-white text-[#0b1224] px-4 py-3 text-sm font-semibold hover:opacity-90 transition"
                 onClick={() => setIsOpen(false)}
               >
-                {l.name}
+                Let’s talk
               </a>
-            ))}
-            <a
-              href="#contact"
-              className="mt-2 inline-flex items-center justify-center rounded-xl bg-white/10 hover:bg-white/14 border border-white/12 px-4 py-3 text-sm font-semibold text-white transition"
-              onClick={() => setIsOpen(false)}
-            >
-              Let’s talk
-            </a>
-          </Container>
+            </Container>
+          </div>
         </div>
       )}
     </header>
@@ -273,22 +273,20 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-transparent"
-      style={{ minHeight: "calc(100vh - 64px)" }}
+      className="relative overflow-hidden bg-transparent min-h-[calc(100svh-64px)] sm:min-h-[calc(100vh-64px)]"
     >
       <HeroBackground />
 
       <div className="relative z-10">
-        <Container className="pt-16 sm:pt-12 mb-12 pb-20 sm:pb-28">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center mt-24">
-            {/* Left */}
-            <div>
+        <Container className="pt-6 sm:pt-10 lg:pt-12 pb-14 sm:pb-18">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center pt-8 sm:pt-10">
+            <div className="min-w-0">
               <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/12 px-4 py-2 text-sm text-white/80">
                 <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
                 Available for freelance & contracts
               </div>
 
-              <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
+              <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
                 Hi, I’m{" "}
                 <span className="bg-gradient-to-r from-white via-indigo-200 to-cyan-200 bg-clip-text text-transparent">
                   {personalInfo?.name?.split(" ")[0] ?? "Sejeel"}
@@ -300,12 +298,12 @@ function Hero() {
                 {bio}
               </p>
 
-              <div className="mt-7 flex flex-col sm:flex-row gap-3">
+              <div className="mt-6 flex flex-col sm:flex-row gap-3">
                 <a
                   href={personalInfo?.social?.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-white text-[#0b1224] px-5 py-3 font-semibold hover:opacity-90 transition"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white text-[#0b1224] px-5 py-3 font-semibold hover:opacity-90 transition"
                 >
                   <FontAwesomeIcon icon={faLinkedin} />
                   LinkedIn
@@ -315,7 +313,7 @@ function Hero() {
                   href={personalInfo?.resumeLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-white/10 border border-white/12 px-5 py-3 font-semibold text-white hover:bg-white/14 transition"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/10 border border-white/12 px-5 py-3 font-semibold text-white hover:bg-white/14 transition"
                 >
                   <FontAwesomeIcon icon={faFileAlt} />
                   CV
@@ -325,41 +323,38 @@ function Hero() {
                   href={personalInfo?.social?.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-white/10 border border-white/12 px-5 py-3 font-semibold text-white hover:bg-white/14 transition"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/10 border border-white/12 px-5 py-3 font-semibold text-white hover:bg-white/14 transition"
                 >
                   <FontAwesomeIcon icon={faGithub} />
                   GitHub
                 </a>
               </div>
 
-              <div className="mt-10 flex flex-wrap items-center gap-2">
+              <div className="mt-8 flex flex-wrap items-center gap-2">
                 {["PHP", "Laravel", "Vue.js", "React", "WordPress"].map((t) => (
                   <Tag key={t}>{t}</Tag>
                 ))}
               </div>
-              <p className="mt-6 text-sm text-white/60">
-                {personalInfo?.location ?? "Greater Manchester, UK"}
-                <div className="inline-block mx-2">•</div>
-                Full-Stack Software Developer
+
+              <p className="mt-5 text-sm text-white/60">
+                <span>{personalInfo?.location ?? "Greater Manchester, UK"}</span>
+                <span className="mx-2 text-white/35">•</span>
+                <span>Full-Stack Software Developer</span>
               </p>
             </div>
 
-            {/* Right (3D illustration — NOT a card) */}
-            <div className="relative overflow-visible">
-              <div className="absolute -inset-8" />
-
-              <div className="relative  p-4 sm:p-5">
-                <div className="">
-                  <img
-                    src={heroicon}
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none";
-                    }}
-                    alt="3D illustration hero"
-                    className="w-full h-[500px] object-contain"
-                    loading="lazy"
-                  />
-                </div>
+            <div className="relative min-w-0">
+              <div className="relative mx-auto max-w-[560px]">
+                <img
+                  src={heroicon}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                  alt="3D illustration hero"
+                  className="w-full max-w-full h-[280px] sm:h-[420px] lg:h-[520px] object-contain select-none"
+                  loading="lazy"
+                  draggable={false}
+                />
               </div>
             </div>
           </div>
@@ -381,12 +376,9 @@ function About() {
   return (
     <Section id="about">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-        {/* Icon / illustration on the LEFT */}
         <div className="lg:col-span-5 overflow-visible">
           <div className="relative">
             <div className="absolute -inset-8 bg-[radial-gradient(circle_at_30%_40%,rgba(59,130,246,0.20),transparent_60%),radial-gradient(circle_at_80%_60%,rgba(236,72,153,0.12),transparent_62%)] blur-2xl" />
-
-            {/* no border frame */}
             <div className="relative">
               <img
                 src={abouticon}
@@ -394,14 +386,14 @@ function About() {
                   e.currentTarget.style.display = "none";
                 }}
                 alt="3D illustration about"
-                className="w-full h-[320px] sm:h-[380px] object-contain"
+                className="w-full max-w-full h-[320px] sm:h-[380px] object-contain select-none"
                 loading="lazy"
+                draggable={false}
               />
             </div>
           </div>
         </div>
 
-        {/* Text on the RIGHT */}
         <div className="lg:col-span-7">
           <SectionHeading
             eyebrow="About"
@@ -420,7 +412,6 @@ function About() {
   );
 }
 
-
 function Skills() {
   const skills = skillsData ?? {
     title: "My Skills",
@@ -430,17 +421,14 @@ function Skills() {
 
   return (
     <Section id="skills">
-      <SectionHeading
-        eyebrow="Skills"
-        title={skills.title}
-        subtitle={skills.description}
-      />
+      <SectionHeading eyebrow="Skills" title={skills.title} subtitle={skills.description} />
 
-
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+      <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {skills.categories.map((cat) => (
-          <div className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-lg p-6"
-            key={cat.title}>
+          <div
+            className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-6 min-w-0"
+            key={cat.title}
+          >
             <h3 className="text-white font-semibold text-lg">{cat.title}</h3>
             <div className="mt-4 flex flex-wrap gap-2">
               {cat.items.map((item) => (
@@ -474,8 +462,6 @@ function Projects() {
     };
   };
 
-  // Contentful mapping must match your useContentful.js return:
-  // { name, description, tags, image:{url}, images:[{url}], projectUrl }
   const normalizeContentful = (p) => {
     if (!p) return null;
 
@@ -506,16 +492,13 @@ function Projects() {
     let mounted = true;
 
     const load = async () => {
-      // 1) Contentful
       try {
         const res = await getProjects?.();
         if (!mounted) return;
 
         if (Array.isArray(res) && res.length) {
           const mapped = res.map(normalizeContentful).filter(Boolean);
-          const hasReal = mapped.some(
-            (x) => x.title !== "Project" || x.description || x.imageUrl
-          );
+          const hasReal = mapped.some((x) => x.title !== "Project" || x.description || x.imageUrl);
           if (hasReal) {
             setProjects(mapped);
             return;
@@ -525,11 +508,7 @@ function Projects() {
         console.error("Error fetching projects from Contentful:", err);
       }
 
-      // 2) fallback
-      const fb = (fallbackProjects ?? [])
-        .map(normalizeFallback)
-        .filter(Boolean);
-
+      const fb = (fallbackProjects ?? []).map(normalizeFallback).filter(Boolean);
       setProjects(fb);
     };
 
@@ -559,9 +538,7 @@ function Projects() {
 
   const prevImg = () => {
     if (!selected?.images?.length) return;
-    setImgIndex(
-      (i) => (i - 1 + selected.images.length) % selected.images.length
-    );
+    setImgIndex((i) => (i - 1 + selected.images.length) % selected.images.length);
   };
 
   const Placeholder = ({ title }) => (
@@ -581,24 +558,12 @@ function Projects() {
 
   return (
     <Section id="projects">
-      <SectionHeading
-        eyebrow="Work"
-        title="Personal Projects"
-        subtitle="A selection of things I’ve built."
-      />
+      <SectionHeading eyebrow="Work" title="Personal Projects" subtitle="A selection of things I’ve built." />
 
-      {/* No filter buttons */}
-      {/* Grid (equal height cards) */}
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
         {projects.map((p) => (
-          <button
-            key={p.title}
-            onClick={() => openProject(p)}
-            className="text-left h-full"
-          >
-            {/* Card: make it a full-height flex column */}
-            <div className="h-full border border-white/10 bg-white/[0.04] hover:bg-white/[0.06] transition shadow-[0_12px_40px_rgba(0,0,0,0.25)] flex flex-col">
-              {/* Image area: fixed height */}
+          <button key={p.title} onClick={() => openProject(p)} className="text-left h-full min-w-0">
+            <div className="h-full border border-white/10 bg-white/[0.04] hover:bg-white/[0.06] transition shadow-[0_12px_40px_rgba(0,0,0,0.25)] flex flex-col overflow-hidden">
               <div className="h-44 bg-black/20 border-b border-white/10 overflow-hidden flex-shrink-0">
                 {p.imageUrl ? (
                   <img
@@ -615,16 +580,13 @@ function Projects() {
                 )}
               </div>
 
-              {/* Content area: flex column so tags stick to bottom */}
-              <div className="p-5 flex flex-col flex-1 min-h-0">
-                <h3 className="text-white font-semibold text-lg">{p.title}</h3>
+              <div className="p-5 flex flex-col flex-1 min-h-0 min-w-0">
+                <h3 className="text-white font-semibold text-lg truncate">{p.title}</h3>
 
-                {/* Clamp the text so every card uses the same space */}
                 <p className="mt-2 text-sm text-white/70 leading-relaxed line-clamp-4">
                   {p.description || "No description yet."}
                 </p>
 
-                {/* Spacer pushes tags to bottom to align baselines */}
                 <div className="flex-1" />
 
                 <div className="mt-4 flex flex-wrap gap-2">
@@ -638,11 +600,9 @@ function Projects() {
         ))}
       </div>
 
-
-      {/* Modal (kept, but not “cardy”) */}
       {selected && (
         <div
-          className="fixed inset-0 z-[999] bg-black/65 backdrop-blur-sm"
+          className="fixed inset-0 z-[999] bg-black/65 backdrop-blur-sm overflow-y-auto"
           onMouseDown={(e) => {
             if (e.target === e.currentTarget) closeProject();
           }}
@@ -650,7 +610,7 @@ function Projects() {
           <div className="mx-auto max-w-5xl px-5 sm:px-8 pt-24 pb-10">
             <div className="border border-white/12 bg-[#0b1224]/70 backdrop-blur-xl shadow-[0_20px_90px_rgba(0,0,0,0.45)] p-5 sm:p-6">
               <div className="flex items-start justify-between gap-4">
-                <div>
+                <div className="min-w-0">
                   <h3 className="text-white text-2xl font-extrabold tracking-tight">
                     {selected.title}
                   </h3>
@@ -659,7 +619,7 @@ function Projects() {
 
                 <button
                   onClick={closeProject}
-                  className="shrink-0 border border-white/12 bg-white/10 hover:bg-white/14 px-3 py-2 text-white"
+                  className="shrink-0 rounded-xl border border-white/12 bg-white/10 hover:bg-white/14 px-3 py-2 text-white"
                 >
                   ✕
                 </button>
@@ -687,14 +647,14 @@ function Projects() {
                   <button
                     onClick={prevImg}
                     disabled={!selected.images?.length || selected.images.length < 2}
-                    className="border border-white/12 bg-white/10 hover:bg-white/14 disabled:opacity-40 px-3 py-2 text-white"
+                    className="rounded-xl border border-white/12 bg-white/10 hover:bg-white/14 disabled:opacity-40 px-3 py-2 text-white"
                   >
                     ←
                   </button>
                   <button
                     onClick={nextImg}
                     disabled={!selected.images?.length || selected.images.length < 2}
-                    className="border border-white/12 bg-white/10 hover:bg-white/14 disabled:opacity-40 px-3 py-2 text-white"
+                    className="rounded-xl border border-white/12 bg-white/10 hover:bg-white/14 disabled:opacity-40 px-3 py-2 text-white"
                   >
                     →
                   </button>
@@ -706,7 +666,7 @@ function Projects() {
                       href={selected.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="border border-white/12 bg-white/10 hover:bg-white/14 px-4 py-2 text-sm font-semibold text-white"
+                      className="rounded-xl border border-white/12 bg-white/10 hover:bg-white/14 px-4 py-2 text-sm font-semibold text-white"
                     >
                       GitHub
                     </a>
@@ -717,7 +677,7 @@ function Projects() {
                       href={selected.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-white text-[#0b1224] px-4 py-2 text-sm font-semibold hover:opacity-90"
+                      className="rounded-xl bg-white text-[#0b1224] px-4 py-2 text-sm font-semibold hover:opacity-90"
                     >
                       Live
                     </a>
@@ -797,7 +757,7 @@ function Contact() {
           <p className="mt-6 text-white/75">
             Prefer email?{" "}
             <a
-              className="text-white font-semibold underline underline-offset-4 decoration-white/30 hover:decoration-white"
+              className="text-white font-semibold underline underline-offset-4 decoration-white/30 hover:decoration-white break-words"
               href={`mailto:${contactInfo?.email ?? personalInfo?.email}`}
             >
               {contactInfo?.email ?? personalInfo?.email}
@@ -805,65 +765,57 @@ function Contact() {
           </p>
         </div>
 
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-7 min-w-0">
           <div className="border border-white/10 bg-white/5 backdrop-blur-xl p-6 sm:p-8 shadow-[0_12px_40px_rgba(0,0,0,0.25)] rounded-2xl">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-semibold text-white/70">
-                    Name
-                  </label>
+                  <label className="text-sm font-semibold text-white/70">Name</label>
                   <input
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="mt-2 w-full bg-black/20 border border-white/12 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:ring-2 focus:ring-white/20"
+                    className="mt-2 w-full bg-black/20 border border-white/12 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:ring-2 focus:ring-white/20 rounded-xl"
                     placeholder="Your name"
                   />
                 </div>
 
                 <div>
-                  <label className="text-sm font-semibold text-white/70">
-                    Email
-                  </label>
+                  <label className="text-sm font-semibold text-white/70">Email</label>
                   <input
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     required
                     type="email"
-                    className="mt-2 w-full bg-black/20 border border-white/12 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:ring-2 focus:ring-white/20"
+                    className="mt-2 w-full bg-black/20 border border-white/12 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:ring-2 focus:ring-white/20 rounded-xl"
                     placeholder="you@email.com"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-sm font-semibold text-white/70">
-                  Subject
-                </label>
+                <label className="text-sm font-semibold text-white/70">Subject</label>
                 <input
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="mt-2 w-full bg-black/20 border border-white/12 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:ring-2 focus:ring-white/20"
+                  className="mt-2 w-full bg-black/20 border border-white/12 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:ring-2 focus:ring-white/20 rounded-xl"
                   placeholder="Project / role / question"
                 />
               </div>
 
               <div>
-                <label className="text-sm font-semibold text-white/70">
-                  Message
-                </label>
+                <label className="text-sm font-semibold text-white/70">Message</label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="mt-2 w-full bg-black/20 border border-white/12 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:ring-2 focus:ring-white/20"
+                  className="mt-2 w-full bg-black/20 border border-white/12 px-4 py-3 text-white placeholder:text-white/35 outline-none focus:ring-2 focus:ring-white/20 rounded-xl"
                   placeholder="Tell me what you’re building…"
                 />
               </div>
@@ -871,7 +823,7 @@ function Contact() {
               {submitStatus ? (
                 <div
                   className={cx(
-                    "border px-4 py-3 text-sm",
+                    "border px-4 py-3 text-sm rounded-xl",
                     submitStatus.type === "success"
                       ? "bg-emerald-500/10 border-emerald-400/20 text-emerald-100"
                       : "bg-rose-500/10 border-rose-400/20 text-rose-100"
@@ -884,7 +836,7 @@ function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex items-center justify-center bg-white text-[#0b1224] px-6 py-3 font-semibold hover:opacity-90 disabled:opacity-60 transition"
+                className="inline-flex items-center justify-center rounded-xl bg-white text-[#0b1224] px-6 py-3 font-semibold hover:opacity-90 disabled:opacity-60 transition"
               >
                 {isSubmitting ? "Sending..." : "Send message"}
               </button>
@@ -901,7 +853,6 @@ function Footer() {
     <footer className="border-t border-white/10">
       <Container className="py-10 flex flex-col sm:flex-row items-center justify-between gap-3">
         <p className="text-sm text-white/60">{footerInfo?.text ?? ""}</p>
-
       </Container>
     </footer>
   );
@@ -912,14 +863,18 @@ function Footer() {
 export default function App() {
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
+    document.documentElement.style.overflowX = "hidden";
+    document.body.style.overflowX = "hidden";
+
     return () => {
       document.documentElement.style.scrollBehavior = "";
+      document.documentElement.style.overflowX = "";
+      document.body.style.overflowX = "";
     };
   }, []);
 
   return (
-    <div className="min-h-screen text-white bg-[#0f172a]">
-      {/* Page background (soft, not too dark) */}
+    <div className="min-h-screen text-white bg-[#0f172a] overflow-x-hidden">
       <div className="pointer-events-none fixed inset-0 -z-20 overflow-hidden">
         <div className="absolute inset-0 bg-[#0f172a]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_60%)]" />
@@ -927,7 +882,7 @@ export default function App() {
 
       <Header />
 
-      <main className="pt-16">
+      <main className="pt-16 overflow-x-hidden">
         <Hero />
         <About />
         <Skills />
